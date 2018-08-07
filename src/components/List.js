@@ -11,6 +11,7 @@ class List extends Component {
   constructor() {
     super();
     this.state = { filterText: '' };
+    this.handleFilterTextChange = this.handleFilterTextChange.bind(this);
   }
 
   sortByAscDate(data) {
@@ -21,7 +22,7 @@ class List extends Component {
     if (this.state.filterText) {
       const filteredData = [];
       data.forEach((d) => {
-        if (d.title.rendered.indexOf(this.state.filterText) !== -1) {
+        if (d.title.rendered.toLowerCase().indexOf(this.state.filterText.toLowerCase()) !== -1) {
           filteredData.push(d);
         }
       });
@@ -42,11 +43,11 @@ class List extends Component {
         <div>
           Filter by Title:
         </div>
-        <FilterBar filterChange={this.handleFilterTextChange} />
+        <FilterBar filterText={this.state.filterText} filterChange={this.handleFilterTextChange} />
         {this.filterData(this.sortByAscDate(this.props.data)).map(d => (
           <div key={d.id}>
             <TitleItem item={d.title.rendered} />
-            <ItemDisplay title="Date" item={d.date} />
+            <ItemDisplay title="Date" item={new Date(d.date).toDateString()} />
             <ItemDisplay title="Status" item={d.status} />
             <ItemDisplay title="Excerpt" item={ReactHtmlParser(d.excerpt.rendered)} />
             <div>

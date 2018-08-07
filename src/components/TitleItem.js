@@ -1,19 +1,25 @@
-import React, { Component } from "react";
+import React from 'react';
 import propTypes from 'prop-types';
 
 
 function TitleItem(props) {
   return (
-  	<div className="titleItem"> <b>{props.item}</b> </div>
+    <div className="titleItem">
+      {' '}
+      <b>
+        {props.item}
+      </b>
+      {' '}
+    </div>
   );
 }
 
 TitleItem.defaultProps = {
-	item: ""
-}
+  item: '',
+};
 
 TitleItem.propTypes = {
-	item: propTypes.string,
-}
+  item: propTypes.string,
+};
 
 export default TitleItem;

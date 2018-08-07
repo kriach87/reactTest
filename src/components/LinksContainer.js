@@ -1,26 +1,34 @@
-import React, { Component } from "react";
-import Prop from 'prop-types';
-import LinkSpan from "./LinkSpan.js";
+import React from 'react';
+import propTypes from 'prop-types';
+import LinkSpan from './LinkSpan';
 
 
 function LinksContainer(props) {
   return (
-  	 <div className="linksContainer">
-      {Object.keys(props.links).map(link =>
-      	<div key={Math.random()}>
-	      	<span>{link}({props.links[link].length}) : <LinkSpan list={props.links[link]}/> </span>
-	      </div>
-  	  )}
-     </div>
+    <div className="linksContainer">
+      {Object.keys(props.links).map(link => (
+        <div key={Math.random()}>
+          <span>
+            {link}
+(
+            {props.links[link].length}
+) :
+            {' '}
+            <LinkSpan list={props.links[link]} />
+            {' '}
+          </span>
+        </div>
+      ))}
+    </div>
   );
 }
 
 LinksContainer.defaultProps = {
-	links:{}
-}
+  links: {},
+};
 
-LinksContainer.Prop = {
-	links: Prop.object
-}
+LinksContainer.propTypes = {
+  links: propTypes.object,
+};
 
 export default LinksContainer;

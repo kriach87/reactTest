@@ -1,28 +1,28 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
 import axios from 'axios';
 import './App.css';
 
-import List from "./components/List.js";
+import List from './components/List';
 
 
 class App extends Component {
-  constructor () {
+  constructor() {
     super();
-    this.state = {responseData: []}  
+    this.state = { responseData: [] };
   }
 
-  componentWillMount(){
-    axios.get('https://thewirecutter.com/wp-json/wp/v2/posts').then(response => {
-      this.setState({responseData: response.data});
-    });  
+  componentWillMount() {
+    axios.get('https://thewirecutter.com/wp-json/wp/v2/posts').then((response) => {
+      this.setState({ responseData: response.data });
+    });
   }
-  
-  render () {
+
+  render() {
     return (
       <div>
-        <List data={this.state.responseData}/>
+        <List data={this.state.responseData} />
       </div>
-    )
+    );
   }
 }
-export default App
+export default App;
